@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserRegisterResponseDTO registerUser(UserRegisterRequestDTO requestDTO) {
+    public UserRegisterResponseDTO save(UserRegisterRequestDTO requestDTO) {
         boolean result = userRepository.existsByEmail(requestDTO.email());
         if (result) {
             throw new UserAlreadyExistsException("User with email: " + requestDTO.email() + " already exists!");
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO findUserById(UUID userId) {
+    public UserDTO findById(UUID userId) {
         return userRepository.findUserById(userId);
     }
 }

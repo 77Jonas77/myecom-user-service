@@ -22,15 +22,16 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserRegisterResponseDTO> registerUser(
+    public ResponseEntity<UserRegisterResponseDTO> save(
             @Valid @RequestBody UserRegisterRequestDTO request) {
-        UserRegisterResponseDTO response = userService.registerUser(request);
+        UserRegisterResponseDTO response = userService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> findUserById(@PathVariable UUID userId) {
-        UserDTO response = userService.findUserById(userId);
+    public ResponseEntity<UserDTO> findById(@PathVariable UUID userId) {
+        UserDTO response = userService.findById(userId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
 }

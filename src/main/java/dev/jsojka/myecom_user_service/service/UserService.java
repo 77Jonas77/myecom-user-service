@@ -7,7 +7,7 @@ import dev.jsojka.myecom_user_service.dto.UserRegisterRequestDTO;
 import java.util.UUID;
 
 public interface UserService {
-    UserRegisterResponseDTO registerUser(UserRegisterRequestDTO requestDTO);
+    UserRegisterResponseDTO save(UserRegisterRequestDTO requestDTO);
 
-    UserDTO findUserById(UUID userId);
+    UserDTO findById(UUID userId);
 }
