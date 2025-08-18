@@ -11,4 +11,6 @@ public interface UserRepository {
     boolean existsByEmail(String email);
 
     UserDTO findUserById(UUID userId);
+
+    UserDTO update(UserDTO user);
 }

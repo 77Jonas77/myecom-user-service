@@ -5,6 +5,7 @@ import dev.jsojka.myecom_user_service.mapper.UserMapper;
 import dev.jsojka.myecom_user_service.model.UserEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -31,7 +32,15 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public UserDTO findUserById(UUID userId) {
-        UserEntity user = userRepositoryJpa.findUserById(userId);
-        return userMapper.entityToUserDTO(user);
+        Optional<UserEntity> user = userRepositoryJpa.findUserById(userId);
+        return userMapper.optionalEntityToUserDTO(user);
+    }
+
+    @Override
+    public UserDTO update(UserDTO user) {
+        userRepositoryJpa.update(
+                user.id(), user.firstName(), user.lastName(), user.email(),
+                user.imageUrl(), user.phone(), user.updatedAt());
+        return user;
     }
 }

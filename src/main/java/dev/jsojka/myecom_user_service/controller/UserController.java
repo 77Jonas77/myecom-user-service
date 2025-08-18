@@ -1,9 +1,11 @@
 package dev.jsojka.myecom_user_service.controller;
 
+import dev.jsojka.myecom_user_service.dto.UpdateUserDTO;
 import dev.jsojka.myecom_user_service.dto.UserDTO;
 import dev.jsojka.myecom_user_service.dto.UserRegisterRequestDTO;
 import dev.jsojka.myecom_user_service.dto.UserRegisterResponseDTO;
 import jakarta.validation.Valid;
+import org.hibernate.sql.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,4 +36,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDTO> updateById(@PathVariable UUID userId, @RequestBody UpdateUserDTO userDTO) {
+        UserDTO response = userService.update(userId, userDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
