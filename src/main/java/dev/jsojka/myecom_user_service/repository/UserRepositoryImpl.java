@@ -43,4 +43,9 @@ public class UserRepositoryImpl implements UserRepository {
                 user.imageUrl(), user.phone(), user.updatedAt());
         return user;
     }
+
+    @Override
+    public void deleteById(UUID userId) {
+        userRepositoryJpa.deleteById(userId);
+    }
 }

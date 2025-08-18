@@ -13,4 +13,6 @@ public interface UserRepository {
     UserDTO findUserById(UUID userId);
 
     UserDTO update(UserDTO user);
+
+    void deleteById(UUID userId);
 }

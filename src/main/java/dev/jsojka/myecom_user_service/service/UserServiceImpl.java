@@ -60,4 +60,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.update(userToUpdate);
     }
 
+    @Override
+    public void deleteById(UUID userId) {
+        userRepository.deleteById(userId);
+    }
+
 }
