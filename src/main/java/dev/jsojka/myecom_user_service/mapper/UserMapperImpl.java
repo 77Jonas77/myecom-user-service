@@ -45,4 +45,18 @@ public class UserMapperImpl implements UserMapper {
                 .updatedAt(userEntity.getUpdatedAt())
                 .build();
     }
+
+    @Override
+    public UserDTO entityToUserDTO(UserEntity userEntity) {
+        return UserDTO.builder()
+                .id(userEntity.getId())
+                .firstName(userEntity.getFirstName())
+                .lastName(userEntity.getLastName())
+                .imageUrl(userEntity.getImageUrl())
+                .email(userEntity.getEmail())
+                .phone(userEntity.getPhone())
+                .createdAt(userEntity.getCreatedAt())
+                .updatedAt(userEntity.getUpdatedAt())
+                .build();
+    }
 }

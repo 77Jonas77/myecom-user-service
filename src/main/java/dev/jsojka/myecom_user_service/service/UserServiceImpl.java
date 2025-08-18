@@ -35,4 +35,9 @@ public class UserServiceImpl implements UserService {
         UserEntity createdUser = userRepository.save(user);
         return userMapper.userEntityToUserRegisterResponseDTO(createdUser);
     }
+
+    @Override
+    public UserDTO findUserById(UUID userId) {
+        return userRepository.findUserById(userId);
+    }
 }

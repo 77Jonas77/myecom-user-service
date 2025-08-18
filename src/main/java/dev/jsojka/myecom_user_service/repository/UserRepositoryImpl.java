@@ -5,6 +5,8 @@ import dev.jsojka.myecom_user_service.mapper.UserMapper;
 import dev.jsojka.myecom_user_service.model.UserEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
@@ -25,5 +27,11 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean existsByEmail(String email) {
         return userRepositoryJpa.existsByEmail(email);
+    }
+
+    @Override
+    public UserDTO findUserById(UUID userId) {
+        UserEntity user = userRepositoryJpa.findUserById(userId);
+        return userMapper.entityToUserDTO(user);
     }
 }
