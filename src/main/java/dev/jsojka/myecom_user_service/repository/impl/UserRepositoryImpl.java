@@ -1,8 +1,10 @@
-package dev.jsojka.myecom_user_service.repository;
+package dev.jsojka.myecom_user_service.repository.impl;
 
 import dev.jsojka.myecom_user_service.dto.UserDTO;
 import dev.jsojka.myecom_user_service.mapper.UserMapper;
 import dev.jsojka.myecom_user_service.model.UserEntity;
+import dev.jsojka.myecom_user_service.repository.UserRepository;
+import dev.jsojka.myecom_user_service.repository.UserRepositoryJpa;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

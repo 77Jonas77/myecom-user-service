@@ -1,10 +1,11 @@
 package dev.jsojka.myecom_user_service.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.Instant;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
@@ -14,7 +15,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserEntity {
+@EntityListeners(AuditingEntityListener.class)
+public class UserEntity extends AbstractEntitySuperclass implements Serializable {
 
     @Id
     @Column(name = "user_id", nullable = false)
@@ -30,34 +32,12 @@ public class UserEntity {
     private String imageUrl;
 
     @Column(name = "email", nullable = false)
+    @Email
     private String email;
 
     @Column(name = "phone", length = 20)
     private String phone;
 
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    @Column(name = "updated_at")
-    private Instant updatedAt;
-
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = Instant.now();
-        this.updatedAt = Instant.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = Instant.now();
-    }
-
-    public UserEntity(UUID id, String firstName, String lastName, String imageUrl, String email, String phone) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.imageUrl = imageUrl;
-        this.email = email;
-        this.phone = phone;
-    }
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private CredentialEntity credential;
 }

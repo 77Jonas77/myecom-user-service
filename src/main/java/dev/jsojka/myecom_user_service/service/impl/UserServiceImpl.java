@@ -1,4 +1,4 @@
-package dev.jsojka.myecom_user_service.service;
+package dev.jsojka.myecom_user_service.service.impl;
 
 import dev.jsojka.myecom_user_service.dto.UpdateUserDTO;
 import dev.jsojka.myecom_user_service.dto.UserDTO;
@@ -8,11 +8,11 @@ import dev.jsojka.myecom_user_service.exception.UserAlreadyExistsException;
 import dev.jsojka.myecom_user_service.exception.UserNotFoundException;
 import dev.jsojka.myecom_user_service.mapper.UserMapper;
 import dev.jsojka.myecom_user_service.model.UserEntity;
+import dev.jsojka.myecom_user_service.service.UserService;
 import org.springframework.stereotype.Service;
 import dev.jsojka.myecom_user_service.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.util.UUID;
 
 @Service
