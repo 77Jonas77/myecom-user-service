@@ -17,7 +17,9 @@ public interface UserRepositoryJpa extends JpaRepository<UserEntity, UUID> {
     Optional<UserEntity> findUserById(UUID userId);
 
     @Modifying
-    @Query("update UserEntity u set u.firstName = :firstName, u.lastName = :lastName, u.email = :email, u.imageUrl = :imageUrl, u.phone = :phone, u.updatedAt = :updatedAt where u.id = :id")
+    @Query("update UserEntity u set u.firstName = :firstName, u.lastName = :lastName, " +
+            "u.email = :email, u.imageUrl = :imageUrl, u.phone = :phone, " +
+            "u.updatedAt = :updatedAt where u.id = :id")
     void update(
             @Param("id") UUID id,
             @Param("firstName") String firstName,

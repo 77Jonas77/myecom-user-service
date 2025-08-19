@@ -1,5 +1,6 @@
 package dev.jsojka.myecom_user_service.repository.impl;
 
+import dev.jsojka.myecom_user_service.dto.UpdateCredentialRequestDTO;
 import dev.jsojka.myecom_user_service.dto.CreateCredentialRequestDTO;
 import dev.jsojka.myecom_user_service.dto.CredentialDTO;
 import dev.jsojka.myecom_user_service.mapper.CredentialMapper;
@@ -32,5 +33,20 @@ public class CredentialRepositoryImpl implements CredentialRepository {
         UserEntity userEntity = userRepositoryJpa.findUserById(userId).orElseThrow();
         CredentialEntity credentialEntity = credentialMapper.createCredentialsRequestAndIdDtoToEntity(requestDTO, userEntity);
         return credentialMapper.entityToCredentialDTO(credentialRepositoryJpa.save(credentialEntity));
+    }
+
+    @Override
+    public CredentialDTO findByUserId(UUID userId) {
+        CredentialEntity entity = credentialRepositoryJpa.findByUserId(userId);
+        return credentialMapper.entityToCredentialDTO(entity);
+    }
+
+    @Override
+    public void updateByUserId(UpdateCredentialRequestDTO requestDTO, UUID userId) {
+        credentialRepositoryJpa.update(
+                        requestDTO.username(), requestDTO.password(),
+                        requestDTO.role(), requestDTO.isCredentialsNonExpired(), requestDTO.isAccountNonExpired(),
+                        requestDTO.isAccountNonLocked(), requestDTO.isEnabled(), userId
+                );
     }
 }

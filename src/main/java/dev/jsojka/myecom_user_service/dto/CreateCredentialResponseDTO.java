@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Builder
 public record CreateCredentialResponseDTO(
-        UUID userId,
+        Integer id,
         String username,
         UserRole role,
         Boolean isEnabled,
@@ -16,6 +16,7 @@ public record CreateCredentialResponseDTO(
         Boolean isAccountNonLocked,
         Boolean isCredentialsNonExpired,
         Instant createdAt,
-        Instant updatedAt
+        Instant updatedAt,
+        UUID userId
 ) {
 }

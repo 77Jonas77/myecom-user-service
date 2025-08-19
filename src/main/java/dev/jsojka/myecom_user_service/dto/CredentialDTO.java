@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Builder
 public record CredentialDTO(
-        UUID userId,
+        Integer id,
         String username,
         String password,
         UserRole role,
@@ -17,6 +17,7 @@ public record CredentialDTO(
         Boolean isAccountNonLocked,
         Boolean isCredentialsNonExpired,
         Instant createdAt,
-        Instant updatedAt
+        Instant updatedAt,
+        UUID userId
 ) {
 }
