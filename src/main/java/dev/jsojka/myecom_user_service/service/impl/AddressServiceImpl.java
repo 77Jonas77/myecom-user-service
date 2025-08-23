@@ -9,7 +9,9 @@ import dev.jsojka.myecom_user_service.repository.AddressRepository;
 import dev.jsojka.myecom_user_service.repository.UserRepository;
 import dev.jsojka.myecom_user_service.service.AddressService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -32,5 +34,14 @@ public class AddressServiceImpl implements AddressService {
                 .orElseThrow(() -> new UserNotFoundException("User with id: " + userId + " not found"));
 
         return addressRepository.save(userId, requestDTO);
+    }
+
+    @Override
+    @Transactional
+    public List<AddressDto> findByUserId(UUID userId) {
+        userRepository.findUserById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User with id: " + userId + " not found"));
+        
+        return addressRepository.findByUserId(userId);
     }
 }

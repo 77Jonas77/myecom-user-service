@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,6 +24,12 @@ public class AddressController {
     @PostMapping("/{userId}")
     public ResponseEntity<AddressDto> save(@PathVariable UUID userId, @RequestBody @Valid CreateAddressRequestDto requestDTO) {
         AddressDto responseDTO = addressService.save(userId, requestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<AddressDto>> findByUserId(@PathVariable UUID userId) {
+        List<AddressDto> responseDTO = addressService.findByUserId(userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 }

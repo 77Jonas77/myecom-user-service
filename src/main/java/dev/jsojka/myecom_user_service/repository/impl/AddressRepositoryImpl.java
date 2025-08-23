@@ -10,6 +10,8 @@ import dev.jsojka.myecom_user_service.repository.jpa.AddressRepositoryJpa;
 import dev.jsojka.myecom_user_service.repository.jpa.UserRepositoryJpa;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -32,5 +34,16 @@ public class AddressRepositoryImpl implements AddressRepository {
         AddressEntity addressEntity = addressMapper.createAddressRequestDtoAndUserToAddressEntity(requestDTO, userEntity);
         AddressEntity address = addressRepositoryJpa.save(addressEntity);
         return addressMapper.addressEntityToAddressDTO(address);
+    }
+
+    @Override
+    public List<AddressDto> findByUserId(UUID userId) {
+        List<AddressEntity> addressEntities = addressRepositoryJpa.findByUserId(userId);
+
+        List<AddressDto> addressList = new ArrayList<>();
+        for (AddressEntity addressEntity : addressEntities) {
+            addressList.add(addressMapper.addressEntityToAddressDTO(addressEntity));
+        }
+        return addressList;
     }
 }
