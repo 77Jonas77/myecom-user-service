@@ -45,4 +45,10 @@ public class AddressServiceImpl implements AddressService {
         return addressRepository.findByUserId(userId);
     }
 
+    @Override
+    @Transactional
+    public void deleteByAddressIdAndUserId(Integer addressId, UUID userId) {
+        addressRepository.deleteByAddressIdAndUserId(addressId, userId);
+    }
+
 }

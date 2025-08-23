@@ -10,4 +10,6 @@ public interface AddressRepository {
     AddressDto save(UUID userId, CreateAddressRequestDto requestDTO);
 
     List<AddressDto> findByUserId(UUID userId);
+
+    void deleteByAddressIdAndUserId(Integer addressId, UUID userId);
 }

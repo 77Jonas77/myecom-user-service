@@ -46,4 +46,10 @@ public class AddressRepositoryImpl implements AddressRepository {
         }
         return addressList;
     }
+
+    @Override
+    public void deleteByAddressIdAndUserId(Integer addressId, UUID userId) {
+        addressRepositoryJpa.deleteByAddressIdAndUserId(addressId, userId);
+    }
+
 }

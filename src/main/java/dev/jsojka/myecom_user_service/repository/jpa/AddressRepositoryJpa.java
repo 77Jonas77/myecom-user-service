@@ -9,4 +9,6 @@ import java.util.UUID;
 public interface AddressRepositoryJpa extends JpaRepository<AddressEntity, Integer> {
 
     List<AddressEntity> findByUserId(UUID user_id);
+
+    void deleteByAddressIdAndUserId(Integer addressId, UUID user_id);
 }

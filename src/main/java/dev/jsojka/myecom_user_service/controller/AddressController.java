@@ -1,5 +1,6 @@
 package dev.jsojka.myecom_user_service.controller;
 
+import dev.jsojka.myecom_user_service.dto.ApiResponse;
 import dev.jsojka.myecom_user_service.dto.address.AddressDto;
 import dev.jsojka.myecom_user_service.dto.address.CreateAddressRequestDto;
 import dev.jsojka.myecom_user_service.service.AddressService;
@@ -33,4 +34,11 @@ public class AddressController {
         List<AddressDto> responseDTO = addressService.findByUserId(userId);
         return ResponseEntity.ok(responseDTO);
     }
+
+    @DeleteMapping("/{addressId}")
+    public ResponseEntity<ApiResponse> deleteByAddressId(@PathVariable Integer addressId, @PathVariable UUID userId) {
+        addressService.deleteByAddressIdAndUserId(addressId, userId);
+        return ResponseEntity.ok(new ApiResponse("Address deleted successfully."));
+    }
+
 }
