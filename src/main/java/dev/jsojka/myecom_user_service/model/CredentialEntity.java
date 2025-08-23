@@ -51,8 +51,7 @@ public class CredentialEntity extends AbstractEntitySuperclass implements Serial
     @Column(name = "is_credentials_non_expired")
     private Boolean isCredentialsNonExpired;
 
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 }

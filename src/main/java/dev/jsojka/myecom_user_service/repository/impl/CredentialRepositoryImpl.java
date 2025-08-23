@@ -1,14 +1,14 @@
 package dev.jsojka.myecom_user_service.repository.impl;
 
-import dev.jsojka.myecom_user_service.dto.UpdateCredentialRequestDTO;
-import dev.jsojka.myecom_user_service.dto.CreateCredentialRequestDTO;
-import dev.jsojka.myecom_user_service.dto.CredentialDTO;
+import dev.jsojka.myecom_user_service.dto.credential.UpdateCredentialRequestDto;
+import dev.jsojka.myecom_user_service.dto.credential.CreateCredentialRequestDto;
+import dev.jsojka.myecom_user_service.dto.credential.CredentialDto;
 import dev.jsojka.myecom_user_service.mapper.CredentialMapper;
 import dev.jsojka.myecom_user_service.model.CredentialEntity;
 import dev.jsojka.myecom_user_service.model.UserEntity;
 import dev.jsojka.myecom_user_service.repository.CredentialRepository;
-import dev.jsojka.myecom_user_service.repository.CredentialRepositoryJpa;
-import dev.jsojka.myecom_user_service.repository.UserRepositoryJpa;
+import dev.jsojka.myecom_user_service.repository.jpa.CredentialRepositoryJpa;
+import dev.jsojka.myecom_user_service.repository.jpa.UserRepositoryJpa;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,20 +29,20 @@ public class CredentialRepositoryImpl implements CredentialRepository {
 
     @Override
     @Transactional
-    public CredentialDTO save(CreateCredentialRequestDTO requestDTO, UUID userId) {
+    public CredentialDto save(CreateCredentialRequestDto requestDTO, UUID userId) {
         UserEntity userEntity = userRepositoryJpa.findUserById(userId).orElseThrow();
         CredentialEntity credentialEntity = credentialMapper.createCredentialsRequestAndIdDtoToEntity(requestDTO, userEntity);
         return credentialMapper.entityToCredentialDTO(credentialRepositoryJpa.save(credentialEntity));
     }
 
     @Override
-    public CredentialDTO findByUserId(UUID userId) {
+    public CredentialDto findByUserId(UUID userId) {
         CredentialEntity entity = credentialRepositoryJpa.findByUserId(userId);
         return credentialMapper.entityToCredentialDTO(entity);
     }
 
     @Override
-    public void updateByUserId(UpdateCredentialRequestDTO requestDTO, UUID userId) {
+    public void updateByUserId(UpdateCredentialRequestDto requestDTO, UUID userId) {
         credentialRepositoryJpa.update(
                 requestDTO.username(), requestDTO.password(),
                 requestDTO.role(), requestDTO.isCredentialsNonExpired(), requestDTO.isAccountNonExpired(),

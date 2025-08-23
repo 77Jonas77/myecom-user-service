@@ -1,4 +1,4 @@
-package dev.jsojka.myecom_user_service.repository;
+package dev.jsojka.myecom_user_service.repository.jpa;
 
 import dev.jsojka.myecom_user_service.model.CredentialEntity;
 import dev.jsojka.myecom_user_service.model.UserRole;

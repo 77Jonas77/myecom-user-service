@@ -1,19 +1,18 @@
 package dev.jsojka.myecom_user_service.service;
 
-import dev.jsojka.myecom_user_service.dto.UpdateCredentialRequestDTO;
-import dev.jsojka.myecom_user_service.dto.CreateCredentialRequestDTO;
-import dev.jsojka.myecom_user_service.dto.CreateCredentialResponseDTO;
-import dev.jsojka.myecom_user_service.dto.CredentialDTO;
-import dev.jsojka.myecom_user_service.dto.UpdateCredentialResponseDTO;
+import dev.jsojka.myecom_user_service.dto.credential.UpdateCredentialRequestDto;
+import dev.jsojka.myecom_user_service.dto.credential.CreateCredentialRequestDto;
+import dev.jsojka.myecom_user_service.dto.credential.CreateCredentialResponseDto;
+import dev.jsojka.myecom_user_service.dto.credential.CredentialDto;
 
 import java.util.UUID;
 
 public interface CredentialService {
-    CreateCredentialResponseDTO save(CreateCredentialRequestDTO requestDTO, UUID userId);
+    CreateCredentialResponseDto save(CreateCredentialRequestDto requestDTO, UUID userId);
 
-    CredentialDTO findByUserId(UUID userId);
+    CredentialDto findByUserId(UUID userId);
 
-    void updateByUserId(UUID userId, UpdateCredentialRequestDTO requestDTO);
+    void updateByUserId(UUID userId, UpdateCredentialRequestDto requestDTO);
 
     void deleteByUserId(UUID userId);
 }

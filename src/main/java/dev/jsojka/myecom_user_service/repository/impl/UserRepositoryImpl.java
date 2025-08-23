@@ -1,10 +1,10 @@
 package dev.jsojka.myecom_user_service.repository.impl;
 
-import dev.jsojka.myecom_user_service.dto.UserDTO;
+import dev.jsojka.myecom_user_service.dto.user.UserDto;
 import dev.jsojka.myecom_user_service.mapper.UserMapper;
 import dev.jsojka.myecom_user_service.model.UserEntity;
 import dev.jsojka.myecom_user_service.repository.UserRepository;
-import dev.jsojka.myecom_user_service.repository.UserRepositoryJpa;
+import dev.jsojka.myecom_user_service.repository.jpa.UserRepositoryJpa;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -22,7 +22,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public UserEntity save(UserDTO userDTO) {
+    public UserEntity save(UserDto userDTO) {
         UserEntity user = userMapper.userDtoToEntity(userDTO);
         return userRepositoryJpa.save(user);
     }
@@ -33,13 +33,13 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public UserDTO findUserById(UUID userId) {
+    public Optional<UserDto> findUserById(UUID userId) {
         Optional<UserEntity> user = userRepositoryJpa.findUserById(userId);
         return userMapper.optionalEntityToUserDTO(user);
     }
 
     @Override
-    public UserDTO update(UserDTO user) {
+    public UserDto update(UserDto user) {
         userRepositoryJpa.update(
                 user.id(), user.firstName(), user.lastName(), user.email(),
                 user.imageUrl(), user.phone(), user.updatedAt());

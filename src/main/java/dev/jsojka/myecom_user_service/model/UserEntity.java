@@ -1,11 +1,13 @@
 package dev.jsojka.myecom_user_service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -15,7 +17,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EntityListeners(AuditingEntityListener.class)
 public class UserEntity extends AbstractEntitySuperclass implements Serializable {
 
     @Id
@@ -39,5 +40,10 @@ public class UserEntity extends AbstractEntitySuperclass implements Serializable
     private String phone;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonIgnore
     private CredentialEntity credential;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<AddressEntity> addresses;
 }

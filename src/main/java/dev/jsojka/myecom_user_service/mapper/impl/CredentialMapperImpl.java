@@ -1,9 +1,10 @@
-package dev.jsojka.myecom_user_service.mapper;
+package dev.jsojka.myecom_user_service.mapper.impl;
 
-import dev.jsojka.myecom_user_service.dto.CreateCredentialRequestDTO;
-import dev.jsojka.myecom_user_service.dto.CreateCredentialResponseDTO;
-import dev.jsojka.myecom_user_service.dto.CredentialDTO;
-import dev.jsojka.myecom_user_service.dto.UpdateCredentialResponseDTO;
+import dev.jsojka.myecom_user_service.dto.credential.CreateCredentialRequestDto;
+import dev.jsojka.myecom_user_service.dto.credential.CreateCredentialResponseDto;
+import dev.jsojka.myecom_user_service.dto.credential.CredentialDto;
+import dev.jsojka.myecom_user_service.dto.credential.UpdateCredentialResponseDto;
+import dev.jsojka.myecom_user_service.mapper.CredentialMapper;
 import dev.jsojka.myecom_user_service.model.CredentialEntity;
 import dev.jsojka.myecom_user_service.model.UserEntity;
 import org.springframework.stereotype.Component;
@@ -12,8 +13,8 @@ import org.springframework.stereotype.Component;
 public class CredentialMapperImpl implements CredentialMapper {
 
     @Override
-    public CredentialDTO entityToCredentialDTO(CredentialEntity credentialEntity) {
-        return CredentialDTO.builder()
+    public CredentialDto entityToCredentialDTO(CredentialEntity credentialEntity) {
+        return CredentialDto.builder()
                 .id(credentialEntity.getId())
                 .username(credentialEntity.getUsername())
                 .password(credentialEntity.getPassword())
@@ -29,7 +30,7 @@ public class CredentialMapperImpl implements CredentialMapper {
     }
 
     @Override
-    public CredentialEntity createCredentialsRequestAndIdDtoToEntity(CreateCredentialRequestDTO requestDTO, UserEntity userEntity) {
+    public CredentialEntity createCredentialsRequestAndIdDtoToEntity(CreateCredentialRequestDto requestDTO, UserEntity userEntity) {
         return CredentialEntity.builder()
                 .user(userEntity)
                 .username(requestDTO.username())
@@ -43,8 +44,8 @@ public class CredentialMapperImpl implements CredentialMapper {
     }
 
     @Override
-    public CreateCredentialResponseDTO credentialDtoToCreateCredentialResponseDto(CredentialDTO credentialDTO) {
-        return CreateCredentialResponseDTO.builder()
+    public CreateCredentialResponseDto credentialDtoToCreateCredentialResponseDto(CredentialDto credentialDTO) {
+        return CreateCredentialResponseDto.builder()
                 .id(credentialDTO.id())
                 .username(credentialDTO.username())
                 .role(credentialDTO.role())
@@ -59,8 +60,8 @@ public class CredentialMapperImpl implements CredentialMapper {
     }
 
     @Override
-    public UpdateCredentialResponseDTO credentialDtoToUpdateCredentialRequestDTO(CredentialDTO credentialDTO) {
-        return UpdateCredentialResponseDTO.builder()
+    public UpdateCredentialResponseDto credentialDtoToUpdateCredentialRequestDTO(CredentialDto credentialDTO) {
+        return UpdateCredentialResponseDto.builder()
                 .id(credentialDTO.id())
                 .username(credentialDTO.username())
                 .password(credentialDTO.password())
