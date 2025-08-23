@@ -1,18 +1,18 @@
 package dev.jsojka.myecom_user_service.service;
 
-import dev.jsojka.myecom_user_service.dto.UpdateUserDTO;
-import dev.jsojka.myecom_user_service.dto.UserDTO;
-import dev.jsojka.myecom_user_service.dto.UserRegisterResponseDTO;
-import dev.jsojka.myecom_user_service.dto.UserRegisterRequestDTO;
+import dev.jsojka.myecom_user_service.dto.user.UpdateUserDto;
+import dev.jsojka.myecom_user_service.dto.user.UserDto;
+import dev.jsojka.myecom_user_service.dto.user.UserRegisterResponseDto;
+import dev.jsojka.myecom_user_service.dto.user.UserRegisterRequestDto;
 
 import java.util.UUID;
 
 public interface UserService {
-    UserRegisterResponseDTO save(UserRegisterRequestDTO requestDTO);
+    UserRegisterResponseDto save(UserRegisterRequestDto requestDTO);
 
-    UserDTO findById(UUID userId);
+    UserDto findById(UUID userId);
 
-    UserDTO update(UUID userId, UpdateUserDTO userDTO);
+    UserDto update(UUID userId, UpdateUserDto userDTO);
 
     void deleteById(UUID userId);
 }

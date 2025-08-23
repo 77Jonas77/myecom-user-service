@@ -1,4 +1,4 @@
-package dev.jsojka.myecom_user_service.dto;
+package dev.jsojka.myecom_user_service.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * DTO for {@link UserEntity}
  */
 @Builder
-public record UserRegisterRequestDTO(
+public record UserRegisterRequestDto(
         @NotBlank String firstName,
         @NotBlank String lastName,
         @NotBlank String imageUrl,

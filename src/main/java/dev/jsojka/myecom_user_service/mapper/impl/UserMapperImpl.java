@@ -1,9 +1,10 @@
-package dev.jsojka.myecom_user_service.mapper;
+package dev.jsojka.myecom_user_service.mapper.impl;
 
-import dev.jsojka.myecom_user_service.dto.UpdateUserDTO;
-import dev.jsojka.myecom_user_service.dto.UserDTO;
-import dev.jsojka.myecom_user_service.dto.UserRegisterRequestDTO;
-import dev.jsojka.myecom_user_service.dto.UserRegisterResponseDTO;
+import dev.jsojka.myecom_user_service.dto.user.UpdateUserDto;
+import dev.jsojka.myecom_user_service.dto.user.UserDto;
+import dev.jsojka.myecom_user_service.dto.user.UserRegisterRequestDto;
+import dev.jsojka.myecom_user_service.dto.user.UserRegisterResponseDto;
+import dev.jsojka.myecom_user_service.mapper.UserMapper;
 import dev.jsojka.myecom_user_service.model.UserEntity;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +15,8 @@ import java.util.UUID;
 //@Mapper(componentModel = "spring")
 @Component
 public class UserMapperImpl implements UserMapper {
-    public UserDTO userRegisterRequestDtoAndIdToUserDTO(UserRegisterRequestDTO requestDTO, UUID userId) {
-        return UserDTO.builder()
+    public UserDto userRegisterRequestDtoAndIdToUserDTO(UserRegisterRequestDto requestDTO, UUID userId) {
+        return UserDto.builder()
                 .id(userId)
                 .firstName(requestDTO.firstName())
                 .lastName(requestDTO.lastName())
@@ -25,7 +26,7 @@ public class UserMapperImpl implements UserMapper {
                 .build();
     }
 
-    public UserEntity userDtoToEntity(UserDTO userDTO) {
+    public UserEntity userDtoToEntity(UserDto userDTO) {
         return UserEntity.builder()
                 .id(userDTO.id())
                 .firstName(userDTO.firstName())
@@ -36,8 +37,8 @@ public class UserMapperImpl implements UserMapper {
                 .build();
     }
 
-    public UserRegisterResponseDTO userEntityToUserRegisterResponseDTO(UserEntity userEntity) {
-        return UserRegisterResponseDTO.builder()
+    public UserRegisterResponseDto userEntityToUserRegisterResponseDTO(UserEntity userEntity) {
+        return UserRegisterResponseDto.builder()
                 .id(userEntity.getId())
                 .firstName(userEntity.getFirstName())
                 .lastName(userEntity.getLastName())
@@ -50,8 +51,8 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public UserDTO optionalEntityToUserDTO(Optional<UserEntity> userEntity) {
-        return userEntity.map(user -> UserDTO.builder()
+    public Optional<UserDto> optionalEntityToUserDTO(Optional<UserEntity> userEntity) {
+        return userEntity.map(user -> UserDto.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
@@ -60,12 +61,12 @@ public class UserMapperImpl implements UserMapper {
                 .phone(user.getPhone())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
-                .build()).orElse(null);
+                .build());
     }
 
     @Override
-    public UserDTO entityToUserDTO(UserEntity user) {
-        return UserDTO.builder()
+    public UserDto entityToUserDTO(UserEntity user) {
+        return UserDto.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
@@ -77,8 +78,8 @@ public class UserMapperImpl implements UserMapper {
                 .build();
     }
 
-    public UserDTO mergeUserDtoWithUpdates(UserDTO existingUser, UpdateUserDTO updates) {
-        return UserDTO.builder()
+    public UserDto mergeUserDtoWithUpdates(UserDto existingUser, UpdateUserDto updates) {
+        return UserDto.builder()
                 .id(existingUser.id())
                 .firstName(updates.firstName())
                 .lastName(updates.lastName())

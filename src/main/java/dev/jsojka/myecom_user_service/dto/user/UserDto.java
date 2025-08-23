@@ -1,4 +1,4 @@
-package dev.jsojka.myecom_user_service.dto;
+package dev.jsojka.myecom_user_service.dto.user;
 
 import dev.jsojka.myecom_user_service.model.UserEntity;
 import jakarta.annotation.Nullable;
@@ -12,6 +12,6 @@ import java.util.UUID;
  * DTO for {@link UserEntity}
  */
 @Builder
-public record UserDTO(UUID id, String firstName, String lastName, String imageUrl, String email,
+public record UserDto(UUID id, String firstName, String lastName, String imageUrl, String email,
                       String phone, @Nullable Instant createdAt, @Nullable Instant updatedAt) implements Serializable {
 }
