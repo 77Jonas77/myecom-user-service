@@ -41,7 +41,8 @@ public class AddressServiceImpl implements AddressService {
     public List<AddressDto> findByUserId(UUID userId) {
         userRepository.findUserById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User with id: " + userId + " not found"));
-        
+
         return addressRepository.findByUserId(userId);
     }
+
 }
