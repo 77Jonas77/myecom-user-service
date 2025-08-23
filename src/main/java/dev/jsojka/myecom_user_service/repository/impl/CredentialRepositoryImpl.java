@@ -44,9 +44,15 @@ public class CredentialRepositoryImpl implements CredentialRepository {
     @Override
     public void updateByUserId(UpdateCredentialRequestDTO requestDTO, UUID userId) {
         credentialRepositoryJpa.update(
-                        requestDTO.username(), requestDTO.password(),
-                        requestDTO.role(), requestDTO.isCredentialsNonExpired(), requestDTO.isAccountNonExpired(),
-                        requestDTO.isAccountNonLocked(), requestDTO.isEnabled(), userId
-                );
+                requestDTO.username(), requestDTO.password(),
+                requestDTO.role(), requestDTO.isCredentialsNonExpired(), requestDTO.isAccountNonExpired(),
+                requestDTO.isAccountNonLocked(), requestDTO.isEnabled(), userId
+        );
+    }
+
+    @Override
+    @Transactional
+    public void deleteByUserId(UUID userId) {
+        credentialRepositoryJpa.deleteByUserId(userId);
     }
 }

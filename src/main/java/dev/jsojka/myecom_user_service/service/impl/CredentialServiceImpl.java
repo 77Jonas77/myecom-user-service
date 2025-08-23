@@ -46,4 +46,9 @@ public class CredentialServiceImpl implements CredentialService {
         }
         credentialRepository.updateByUserId(requestDTO, userId);
     }
+
+    @Override
+    public void deleteByUserId(UUID userId) {
+        credentialRepository.deleteByUserId(userId);
+    }
 }

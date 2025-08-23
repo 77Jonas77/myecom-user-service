@@ -12,4 +12,6 @@ public interface CredentialRepository {
     CredentialDTO findByUserId(UUID userId);
 
     void updateByUserId(UpdateCredentialRequestDTO requestDTO, UUID userId);
+
+    void deleteByUserId(UUID userId);
 }

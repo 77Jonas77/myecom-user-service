@@ -26,4 +26,6 @@ public interface CredentialRepositoryJpa extends JpaRepository<CredentialEntity,
             @Param("accountNonLocked") Boolean accountNonLocked,
             @Param("enabled") Boolean enabled,
             @Param("userId") UUID userId);
+
+    void deleteByUserId(UUID user_id);
 }

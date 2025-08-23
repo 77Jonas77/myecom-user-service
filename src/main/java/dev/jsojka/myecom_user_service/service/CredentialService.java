@@ -14,4 +14,6 @@ public interface CredentialService {
     CredentialDTO findByUserId(UUID userId);
 
     void updateByUserId(UUID userId, UpdateCredentialRequestDTO requestDTO);
+
+    void deleteByUserId(UUID userId);
 }

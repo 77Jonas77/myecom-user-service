@@ -33,6 +33,12 @@ public class CredentialController {
     @PutMapping("/{userId}")
     public ResponseEntity<String> updateByUserId(@PathVariable UUID userId, @RequestBody UpdateCredentialRequestDTO requestDTO) {
         credentialService.updateByUserId(userId, requestDTO);
-        return ResponseEntity.ok("User with id: " + userId + " successfully updated.");
+        return ResponseEntity.ok().body("Credential for user + " + userId + " updated successfully.");
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteByUserId(@PathVariable UUID userId) {
+        credentialService.deleteByUserId(userId);
+        return ResponseEntity.ok().body("Credential for user + " + userId + " deleted successfully.");
     }
 }
